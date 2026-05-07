@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.1.1
+    hooks:
+      - id: black
+        language_version: python3
+        exclude: ^.*\b(migrations)\b.*|^.*\b(venv)\b.*|^.*\b(__pycache__)\b.*|^.*\b(settings\.py)$
+        args: [ --line-length=100 ]
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        exclude: ^.*\b(migrations)\b.*|^.*\b(venv)\b.*|^.*\b(__pycache__)\b.*|^.*\b(settings\.py)$
+        args: [ --max-line-length=100, --extend-ignore=E203]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^.*\b(migrations)\b.*|^.*\b(settings\.py)$
+      - id: end-of-file-fixer
+        exclude: ^.*\b(migrations)\b.*|^.*\.(mo|po)$|^.*\b(settings\.py)$
+      - id: check-yaml
+      - id: check-added-large-files
+        args: [ '--maxkb=1024' ]
+      - id: check-merge-conflict
+      - id: debug-statements
